@@ -55,7 +55,7 @@ deductFood(x){
     }); 
 }
 
-bedroom(){
+/*bedroom(){
     background(bedroom, 550,500);
 
 }
@@ -68,7 +68,7 @@ garden(){
 washroom(){
     background(WashRoom, 550,500);
 
-}
+}*/
 
 
 
