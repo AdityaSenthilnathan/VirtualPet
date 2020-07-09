@@ -1,8 +1,12 @@
 var dogIMG, dogIMG2, dog, foodS, foodStock, dataBase,  foodObj;
 var feedTime = 0; 
-var feedT = "feed the dog to see its last feed later";
+var feedT = 0;
+
 var hour;
 var hourmin;
+var garden, WashRoom, bedroom;
+var readState;
+var bark;
 
   
 const Engine = Matter.Engine;
@@ -12,8 +16,15 @@ const Constraint = Matter.Constraint;
 const db = firebase.database().ref();
 foodS = 0;
 function preload() {
-  dogIMG = loadImage("images/dogImg.png");
-  dogIMG2 = loadImage("images/dogImg1.png");
+  soundFormats('mp3', 'ogg');
+  dogIMG = loadImage("images/dog.png");
+  dogIMG2 = loadImage("images/happy dog.png");
+garden = loadImage("images/Garden.png");
+WashRoom = loadImage("images/Wash Room.png");
+bedroom = loadImage("images/Bed Room.png");
+//bark = loadSound("images/chasecog.mp3")
+
+
   //dataBase = firebase.database();
   //db = firebase.database().ref();
 }
@@ -33,13 +44,19 @@ function setup() {
   restock = createButton("Restock your food");
   restock.position(920, 75);
   feedTime = firebase.database().ref("FeedTime");
+feedTime.on("value", readTime);
 
+  readState = firebase.database().ref("gameState");
+  readState.on("value",function(data){
+    gameState = data.val();
+  });
 
 }
 
 
 function draw() {
 
+  //foodObj.bedroom();
   background(46, 139, 87);
   drawSprites();
   gettime();
@@ -53,12 +70,12 @@ function draw() {
 
   foodObj.getFoodStock();
   foodStock.on("value", readStock);
-feedTime.on("value", readTime);
+  var f =  feedT - 12;
   text("Food Avalible: " + foodS, 20, 55);
 
 
  if (feedT>=12){
-  text("Last Fed : " + feedT - 12 + " PM", 20,85); 
+  text("Last Fed : " + f + " PM", 20,85); 
 
  }else if(feedT == 0){
   text("Last Fed : 12 AM" , 20,85); 
@@ -81,6 +98,7 @@ function restockFood() {
 }
 
 function feedDog(){
+ // bark.play();
   feedT = hourmin;
   firebase.database().ref('/').update({
     FeedTime: feedT
@@ -91,7 +109,7 @@ function feedDog(){
 }
 
 async function gettime (){
-  var response = await fetch("https://worldtimeapi.org/api/timezone/America/Los_Angeles")
+  var response = await fetch("http://worldtimeapi.org/api/timezone/America/Los_Angeles")
   var time = await response.json();
    var dateTime = time.datetime;
   hour = dateTime.slice(11,13);
