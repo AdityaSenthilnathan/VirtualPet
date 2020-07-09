@@ -91,7 +91,7 @@ function feedDog(){
 }
 
 async function gettime (){
-  var response = await fetch("http://worldtimeapi.org/api/timezone/America/Los_Angeles")
+  var response = await fetch("https://worldtimeapi.org/api/timezone/America/Los_Angeles")
   var time = await response.json();
    var dateTime = time.datetime;
   hour = dateTime.slice(11,13);
