@@ -19,9 +19,9 @@ function preload() {
   soundFormats('mp3', 'ogg');
   dogIMG = loadImage("images/dog.png");
   dogIMG2 = loadImage("images/happy dog.png");
-garden = loadImage("images/Garden.png");
-WashRoom = loadImage("images/Wash Room.png");
-bedroom = loadImage("images/Bed Room.png");
+//garden = loadImage("images/Garden.png");
+//WashRoom = loadImage("images/Wash Room.png");
+//bedroom = loadImage("images/Bed Room.png");
 //bark = loadSound("images/chasecog.mp3")
 
 
