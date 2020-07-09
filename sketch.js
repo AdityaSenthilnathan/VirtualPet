@@ -33,7 +33,7 @@ function setup() {
   restock = createButton("Restock your food");
   restock.position(920, 75);
   feedTime = firebase.database().ref("FeedTime");
-feedTime.on("value", readTime);
+
 
 }
 
@@ -53,18 +53,18 @@ function draw() {
 
   foodObj.getFoodStock();
   foodStock.on("value", readStock);
-
+feedTime.on("value", readTime);
   text("Food Avalible: " + foodS, 20, 55);
 
 
  if (feedT>=12){
-  text("Last Fed : " + feedT + "PM", 20,85); 
+  text("Last Fed : " + feedT - 12 + " PM", 20,85); 
 
  }else if(feedT == 0){
   text("Last Fed : 12 AM" , 20,85); 
 
  } else {
-  text("Last Fed : " + feedT + "AM", 20,85); 
+  text("Last Fed : " + feedT + " AM", 20,85); 
 
 }
 }
