@@ -6,14 +6,14 @@ var hour;
 var hourmin;
 var garden, WashRoom, bedroom;
 var readState;
-var bark;
+//var bark;
 
   
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
-const db = firebase.database().ref();
+const db = firebase.database();
 foodS = 0;
 function preload() {
   soundFormats('mp3', 'ogg');
@@ -50,6 +50,8 @@ feedTime.on("value", readTime);
   readState.on("value",function(data){
     gameState = data.val();
   });
+
+  database = firebase.database();
 
 }
 
