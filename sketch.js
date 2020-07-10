@@ -17,11 +17,11 @@ const db = firebase.database();
 foodS = 0;
 function preload() {
   soundFormats('mp3', 'ogg');
-  dogIMG = loadImage("images/dog.png");
+  dogIMG = loadImage("images/Dog.png");
   dogIMG2 = loadImage("images/happy dog.png");
 //garden = loadImage("images/Garden.png");
 //WashRoom = loadImage("images/Wash Room.png");
-//bedroom = loadImage("images/Bed Room.png");
+//  bedroom = loadImage("images/Bed Room.png");
 //bark = loadSound("images/chasecog.mp3")
 
 
